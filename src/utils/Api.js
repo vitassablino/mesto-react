@@ -41,7 +41,6 @@ class Api {
   /* Получение данные */
   getData() {
     return Promise.all([this.getInitialCards(), this.getUserData()]);
-    console.log(`getUserData = ${this.getUserData()}`);
   }
 
   /*установка лайка*/

@@ -1,19 +1,29 @@
 import React from "react";
 
-function ImagePopup() {
+function ImagePopup(props) {
   return (
-    <div className="image-container" id="image-container">
-      <div className="popup__figure-position" id="figure-position">
+    <div
+      className={`popup image-container ${props.card && "popup_active"}`}
+      id="image-container"
+    >
+      <div className="popup__figure-position" id="figure-position ">
         <figure className="image-figure">
-          <img alt="Изображение" className="image-figure__big-image" />
-          <figcaption className="image-figure__figcaption"></figcaption>
+          <img
+            alt="Изображение"
+            className="image-figure__big-image"
+            src={props.card.link}
+          />
+          <figcaption className="image-figure__figcaption">
+            {props.card.name}
+          </figcaption>
         </figure>
+        <button
+          className="popup__close-button"
+          aria-label="Закрыть изображение"
+          type="button"
+          onClick={props.onClose}
+        ></button>
       </div>
-      <button
-        className="popup__close-button"
-        aria-label="Закрыть изображение"
-        type="button"
-      ></button>
     </div>
   );
 }
