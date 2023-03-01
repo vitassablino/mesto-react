@@ -3,14 +3,16 @@ import React from "react";
 function ImagePopup(props) {
   return (
     <div
-      className={`popup image-container ${props.card && "popup_active"}`}
+      className={`popup image-container ${
+        props.card && props.isOpen ? "popup_active" : {}
+      }`}
       id="image-container"
     >
       <div className="popup__figure-position" id="figure-position ">
         <figure className="image-figure">
           <img
-            alt="Изображение"
             className="image-figure__big-image"
+            alt={`Фотография ${props.card.name}`}
             src={props.card.link}
           />
           <figcaption className="image-figure__figcaption">
