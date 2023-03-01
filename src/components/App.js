@@ -55,84 +55,75 @@ function App() {
           <PopupWithForm
             name="edit-popup"
             title="Редактировать профиль"
-            children={
-              <>
-                <input
-                  className="popup-form__input"
-                  type="text"
-                  name="name"
-                  autoComplete="off"
-                  placeholder="Имя"
-                  id="name"
-                  minLength="2"
-                  maxLength="40"
-                  required
-                />
-                <span
-                  className="popup-form__input-error"
-                  id="name-error"
-                ></span>
-                <input
-                  className="popup-form__input"
-                  type="text"
-                  name="description"
-                  autoComplete="off"
-                  placeholder="Описание"
-                  id="description"
-                  minLength="2"
-                  maxLength="200"
-                  required
-                />
-                <span
-                  className="popup-form__input-error"
-                  id="description-error"
-                ></span>
-              </>
-            }
             buttonText="Сохранить"
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-          />
+          >
+            <input
+              className="popup-form__input"
+              type="text"
+              name="name"
+              autoComplete="off"
+              placeholder="Имя"
+              id="name"
+              minLength="2"
+              maxLength="40"
+              required
+            />
+            <span className="popup-form__input-error" id="name-error"></span>
+            <input
+              className="popup-form__input"
+              type="text"
+              name="description"
+              autoComplete="off"
+              placeholder="Описание"
+              id="description"
+              minLength="2"
+              maxLength="200"
+              required
+            />
+            <span
+              className="popup-form__input-error"
+              id="description-error"
+            ></span>
+          </PopupWithForm>
 
           <PopupWithForm
             name="card-popup"
             title="Новое место"
-            children={
-              <>
-                <input
-                  className="popup-form__input"
-                  type="text"
-                  name="cardName"
-                  autoComplete="off"
-                  placeholder="Название"
-                  id="cardName"
-                  minLength="2"
-                  maxLength="30"
-                  required
-                />
-                <span
-                  className="popup-form__input-error"
-                  id="cardName-error"
-                ></span>
-                <input
-                  className="popup-form__input"
-                  type="url"
-                  name="cardLink"
-                  autoComplete="off"
-                  placeholder="Ссылка на картинку"
-                  id="cardLink"
-                  required
-                />
-                <span
-                  className="popup-form__input-error"
-                  id="cardLink-error"
-                ></span>
-              </>
-            }
             buttonText="Создать"
             isOpen={isAddCardPopupOpen}
             onClose={closeAllPopups}
-          />
+          >
+            <input
+              className="popup-form__input"
+              type="text"
+              name="cardName"
+              autoComplete="off"
+              placeholder="Название"
+              id="cardName"
+              minLength="2"
+              maxLength="30"
+              required
+            />
+            <span
+              className="popup-form__input-error"
+              id="cardName-error"
+            ></span>
+            <input
+              className="popup-form__input"
+              type="url"
+              name="cardLink"
+              autoComplete="off"
+              placeholder="Ссылка на картинку"
+              id="cardLink"
+              required
+            />
+            <span
+              className="popup-form__input-error"
+              id="cardLink-error"
+            ></span>
+          </PopupWithForm>
 
           <PopupWithForm
             name="popup_deleting-confirm"
@@ -144,26 +135,20 @@ function App() {
           <PopupWithForm
             name="popup-avatar-edit"
             title="Обновить аватар"
-            children={
-              <>
-                <input
-                  type="url"
-                  id="avatar"
-                  name="avatar"
-                  className="popup-form__input"
-                  placeholder="Ссылка на изображение"
-                  required
-                />
-                <span
-                  className="popup-form__input-error"
-                  id="avatar-error"
-                ></span>
-              </>
-            }
             buttonText="Сохранить"
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-          />
+          >
+            <input
+              type="url"
+              id="avatar"
+              name="avatar"
+              className="popup-form__input"
+              placeholder="Ссылка на изображение"
+              required
+            />
+            <span className="popup-form__input-error" id="avatar-error"></span>
+          </PopupWithForm>
         </div>
 
         <ImagePopup
