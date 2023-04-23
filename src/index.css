@@ -45,6 +45,7 @@
 @import url("../src/blocks/element/__image/element__image.css");
 @import url("../src/blocks/element/__pic-cintainer/element__pic-cintainer.css");
 @import url("../src/blocks/element/__delete/element__delete.css");
+@import url("../src/blocks/element/__delete/element__delete_hidden.css");
 @import url("../src/blocks/element/__like-button/element__like-button.css");
 @import url("../src/blocks/element/__like-button/_active/element__like-button_active.css");
 @import url("../src/blocks/element/__like-container/element__like-container.css");

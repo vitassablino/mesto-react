@@ -25,7 +25,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.description,
+        about: data.about,
       }),
     }).then(this.#checkResponse);
   }
@@ -57,6 +57,14 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     }).then(this.#checkResponse);
+  }
+
+  changeLike(id, isLiked) {
+    if (isLiked) {
+      return this.notLike(id);
+    } else {
+      return this.like(id);
+    }
   }
 
   addNewCard(items) {
