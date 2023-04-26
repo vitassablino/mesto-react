@@ -20,6 +20,7 @@ class Api {
   }
 
   setUserData(data) {
+    console.log(data);
     return fetch(this._url + "/users/me", {
       method: "PATCH",
       headers: this._headers,
@@ -68,6 +69,7 @@ class Api {
   }
 
   addNewCard(items) {
+    console.log(items);
     return fetch(this._url + "/cards", {
       method: "POST",
       headers: this._headers,

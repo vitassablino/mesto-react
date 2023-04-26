@@ -1,37 +1,41 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { useFormValidation } from "../utils/useFormValidation";
 
-import { useFormValidation } from "../hooks/useFormValidation";
+function AddCardPopup({ isOpen, onClose, onAddCard, isLoading }) {
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    resetValues,
+    formRef,
+    errorClassName,
+  } = useFormValidation();
 
-function AddCardPopup(props) {
-  const { values, errors, isValid, handleChange, resetForm } =
-    useFormValidation({});
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  function handleSubmit(evt) {
-    evt.preventDefault(evt);
-    props.onAddPlace(values);
+    onAddCard({
+      cardName: values["cardName"],
+      cardLink: values["cardLink"],
+    });
+
+    resetValues();
   }
-
-  React.useEffect(() => {
-    resetForm();
-  }, [props.isOpen, resetForm]);
 
   return (
     <PopupWithForm
+      ref={formRef}
       name="card-popup"
       title="Новое место"
       buttonText="Создать"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
-      isDisabled={!isValid}
     >
       <input
-        className={
-          errors.cardName
-            ? "popup-form__input popup-form__input_wrong"
-            : "popup-form__input"
-        }
+        className="popup-form__input"
         type="text"
         name="cardName"
         autoComplete="off"
@@ -41,16 +45,11 @@ function AddCardPopup(props) {
         maxLength="30"
         required
         onChange={handleChange}
+        value={values["cardName"] ?? ""}
       />
-      <span className="popup-form__input-error" id="cardName-error">
-        {errors.cardName}
-      </span>
+      <span className={errorClassName("cardName")}>{errors["cardName"]}</span>
       <input
-        className={
-          errors.cardLink
-            ? "popup-form__input popup-form__input_wrong"
-            : "popup-form__input"
-        }
+        className="popup-form__input"
         type="url"
         name="cardLink"
         autoComplete="off"
@@ -58,10 +57,18 @@ function AddCardPopup(props) {
         id="cardLink"
         required
         onChange={handleChange}
+        value={values["cardLink"] ?? ""}
       />
-      <span className="popup-form__input-error" id="cardLink-error">
-        {errors.cardLink}
-      </span>
+      <span className={errorClassName("cardLink")}>{errors["cardLink"]}</span>
+      <button
+        type="submit"
+        className={`popup-form__save-button ${
+          isValid ? "" : "popup-form__save-button_disabled"
+        }`}
+        disabled={isValid ? false : true}
+      >
+        {isLoading ? "Добавление..." : "Добавить"}
+      </button>
     </PopupWithForm>
   );
 }

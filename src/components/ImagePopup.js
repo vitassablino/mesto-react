@@ -1,29 +1,36 @@
-import React from "react";
-
-function ImagePopup(props) {
+function ImagePopup({ card, onClose }) {
   return (
     <div
-      className={`popup image-container ${
+      className={`popup image-container ${card.link ? "popup_active" : ""}`}
+      /* className={`popup image-container ${
         props.card && props.isOpen ? "popup_active" : {}
-      }`}
+      }`} */
       id="image-container"
+      onClick={({ target }) => {
+        if (
+          target.classList.contains("popup_active") ||
+          target.classList.contains("popup__close-button")
+        ) {
+          onClose();
+        }
+      }}
     >
       <div className="popup__figure-position" id="figure-position ">
         <figure className="image-figure">
           <img
             className="image-figure__big-image"
-            alt={`Фотография ${props.card.name}`}
-            src={props.card.link}
+            alt={`Фотография ${card.name}`}
+            src={card.link}
           />
           <figcaption className="image-figure__figcaption">
-            {props.card.name}
+            {card.name}
           </figcaption>
         </figure>
         <button
           className="popup__close-button"
           aria-label="Закрыть изображение"
           type="button"
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
       </div>
     </div>

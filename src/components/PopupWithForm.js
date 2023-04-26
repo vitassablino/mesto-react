@@ -1,37 +1,39 @@
-import React from "react";
+import { forwardRef } from "react";
 
-function PopupWithForm(props) {
-  return (
-    <div
-      className={`popup popup_type_${props.name} ${
-        props.isOpen && "popup_active"
-      }`}
-    >
-      <div className="popup__form">
-        <form className="popup-form" name={props.name} noValidate>
-          <h3 className="popup-form__header">{props.title}</h3>
-          {props.children}
-          <button
-            type="submit"
-            className={
-              props.isDisabled
-                ? "popup-form__save-button popup-form__save-button_disabled"
-                : "popup-form__save-button"
-            }
-            disabled={props.isDisabled}
+const PopupWithForm = forwardRef(
+  ({ name, title, isOpen, onClose, onSubmit, children }, ref) => {
+    return (
+      <div
+        className={`popup ${!isOpen ? "" : "popup popup_active"}`}
+        onClick={({ target }) => {
+          if (
+            target.classList.contains("popup_active") ||
+            target.classList.contains("popup__close-button")
+          ) {
+            onClose();
+          }
+        }}
+      >
+        <div className="popup__form">
+          <h2 className="popup-form__header">{title}</h2>
+          <form
+            ref={ref}
+            className="popup-form"
+            name={`${name}-form`}
+            onSubmit={onSubmit}
+            noValidate
           >
-            {props.buttonText || "Сохранить"}
-          </button>
-        </form>
-        <button
-          type="button"
-          className="popup__close-button"
-          aria-label="Закрыть форму ввода"
-          onClick={props.onClose}
-        ></button>
+            {children}
+          </form>
+          <button
+            type="button"
+            className="popup__close-button"
+            aria-label="Закрыть форму ввода"
+          ></button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
 
 export default PopupWithForm;
