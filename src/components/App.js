@@ -126,7 +126,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <body className="body">
+      <div className="body">
         <div className="page">
           <Header />
           <Main
@@ -171,7 +171,7 @@ function App() {
             buttonText="Да"
           />
         </div>
-      </body>
+      </div>
     </CurrentUserContext.Provider>
   );
 }
